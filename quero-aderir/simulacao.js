@@ -170,7 +170,7 @@
             }else{
                 errorContainer.style.display = "block"
                 errorMsg.innerText = "Simulação não disponivel"
-                console.log("Simulação não disponivel")
+               
             }
 
 
