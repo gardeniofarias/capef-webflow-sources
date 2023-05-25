@@ -221,6 +221,7 @@ getElement('#submit-cpf').addEventListener('click', async () => {
   getElement('#failure-cpf').style.display = 'none';
   const errorMsg = getElement("#error-msg-cpf")
   const submitWebflow = document.getElementById("webflow-submit")
+
   preloader.style.display = "flex"
   loadingIcon.style.display = "flex"
 
@@ -228,17 +229,25 @@ getElement('#submit-cpf').addEventListener('click', async () => {
   formQueroAderir.style.display = 'none';
   loading.style.display = 'block';
   
-  
+  if(cpfAdesao.value.length < 11){
+    preloader.style.display = "none"
+    loadingIcon.style.display = "none"
+    formQueroAderir.style.display = 'block';
+    loading.style.display = 'none';
+      getElement('#failure-cpf').style.display = "block"
+      errorMsg.style.display = "block"
+      errorMsg.innerText = "CPF não é valido"
+    return;
+  }
 
   const isCPFValid = await validateCPF(cpfAdesao.value);
-
 
   if (!isCPFValid) {
       formQueroAderir.style.display = 'block';
         errorMsg.style.display = "block"
       var text = "Que bom que você demonstrou interesse no Plano CV I. Entretanto, seu CPF não consta em nosso banco de dados. Que tal conhecer mais sobre o Plano Família? ";
-      var link = "https://www.example.com/plano-familia";
-      errorMsg.innerHTML = text + "<a href='" + link + "'>Link direcionando para a Página do Plano Família.</a>";
+      var link = "https://capef-web.webflow.io/plano-familia";
+      errorMsg.innerHTML = text + "<a href='" + link + "'>Plano Família.</a>";
       getElement('#failure-cpf').style.display = "block"
   } else {
 
@@ -247,10 +256,10 @@ getElement('#submit-cpf').addEventListener('click', async () => {
     if(response.podeAderir){
       if(submitWebflow){
         submitWebflow.click()
-      }
+      } 
       successCPF.style.display = 'block';
       sendReview.style.display = 'none';
-      window.open("https://www.capef.com.br/arearestrita/Login?url=/arearestrita/SimuladorCV/NovoSimulador", "_blank")
+      window.open("https://www.capef.com.br/arearestrita/Login?url=/arearestrita/SimuladorCV/NovoSimulador", "_self")
     }else{
       getElement('#failure-cpf').style.display = "block"
       errorMsg.style.display = "block"
