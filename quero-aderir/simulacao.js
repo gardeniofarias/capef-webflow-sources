@@ -140,7 +140,27 @@
             }
         }
 
+        const cpfEligibilityCVPlan = async cpf => {
+            const formattedCPF = formatCPF(cpf);
+            
+             const response = await api(`${API_ELIGIBILITY_CV_PLAN_URL}/${formattedCPF}/PlanoCV`, { key: urlConsulta });
+            if (response.podeAderir) {
+                await setupToken({ url: urlConsulta });
+                return true;
+            } else {
+                return false;
+            }
+        };
+
         async function getSimulation(cpf) {
+
+            const checkElegibilite = await cpfEligibilityCVPlan(cpf)
+
+            if(!checkElegibilite){
+                errorContainer.style.display = "block"
+                errorMsg.innerText = "CPF já é aderiu o plano"
+                return;
+            }
            
              await setupToken({ url: urlSimulacao });
 
