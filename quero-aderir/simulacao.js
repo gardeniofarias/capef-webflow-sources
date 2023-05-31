@@ -140,7 +140,7 @@
             }
         }
 
-        const cpfEligibilityCVPlan = async cpf => {
+        const cpfEligibilityPlanCV = async cpf => {
             const formattedCPF = formatCPF(cpf);
             
              const response = await api(`${API_ELIGIBILITY_CV_PLAN_URL}/${formattedCPF}/PlanoCV`, { key: urlConsulta });
@@ -154,7 +154,7 @@
 
         async function getSimulation(cpf) {
 
-            const checkElegibilite = await cpfEligibilityCVPlan(cpf)
+            const checkElegibilite = await cpfEligibilityPlanCV(cpf)
 
             if(!checkElegibilite){
                 errorContainer.style.display = "block"
