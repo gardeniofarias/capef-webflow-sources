@@ -154,6 +154,11 @@
 
         async function getSimulation(cpf) {
 
+            const simulatorResults = document.getElementById("simulation-results")
+            const errorContainer = document.getElementById("simulation-error")
+            const errorMsg = document.getElementById("simulation-error-msg")
+
+
             const checkElegibilite = await cpfEligibilityPlanCV(cpf)
 
             if(!checkElegibilite){
@@ -164,9 +169,7 @@
            
              await setupToken({ url: urlSimulacao });
 
-             const simulatorResults = document.getElementById("simulation-results")
-            const errorContainer = document.getElementById("simulation-error")
-            const errorMsg = document.getElementById("simulation-error-msg")
+          
            
            
             const valorContribuicao = document.getElementById("contribution-amount")
