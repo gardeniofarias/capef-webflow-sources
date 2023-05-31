@@ -143,10 +143,10 @@
         const cpfEligibilityPlanCV = async cpf => {
             const formattedCPF = formatCPF(cpf);
             
-             const response = await api(`${API_ELIGIBILITY_CV_PLAN_URL}/${formattedCPF}/PlanoCV`, { key: urlConsulta });
-            if (response.podeAderir) {
+            const response = await api(`${urlConsulta}/Elegibilidade/${formattedCPF}/PlanoCV`, { key: urlConsulta });
+            if (response) {
                 await setupToken({ url: urlConsulta });
-                return true;
+                return response;
             } else {
                 return false;
             }
@@ -159,19 +159,17 @@
             const errorMsg = document.getElementById("simulation-error-msg")
 
 
-            const checkElegibilite = await cpfEligibilityPlanCV(cpf)
+            const elegibiliteResult = await cpfEligibilityPlanCV(cpf)
 
-            if(!checkElegibilite){
+
+            if(elegibiliteResult.aderiuCV){
                 errorContainer.style.display = "block"
                 errorMsg.innerText = "Você já é Participante do Plano."
                 return;
             }
            
-             await setupToken({ url: urlSimulacao });
+            await setupToken({ url: urlSimulacao });
 
-          
-           
-           
             const valorContribuicao = document.getElementById("contribution-amount")
             const rendaMensalOutros = document.getElementById("other-monthly-income")
             const rendaMensalCV = document.getElementById("cv-monthly-income")
@@ -193,12 +191,7 @@
             }else{
                 errorContainer.style.display = "block"
                 errorMsg.innerText = "Simulação não disponivel"
-               
             }
-
-
-            
-
         }
 
         document.getElementById("cpf-simulator-submit").addEventListener("click", async () => {
