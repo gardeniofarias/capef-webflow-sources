@@ -22,9 +22,6 @@
         var urlSimulacao = "https://apiplanomercado.capef.com.br";
 
         async function setupToken({ url }) {
-            let token = localStorage.getItem(url);
-
-            if (!token) {
                 const authResponse = await fetch(`${url}/Auth/Access-Token`, {
                     method: "POST",
                     body: JSON.stringify({
@@ -44,7 +41,6 @@
                 token = authData.access_Token;
 
                 localStorage.setItem(url, token);
-            }
         }
 
 
@@ -168,7 +164,7 @@
                 return;
             }
            
-            await setupToken({ url: urlSimulacao });
+            //await setupToken({ url: urlSimulacao });
 
             const valorContribuicao = document.getElementById("contribution-amount")
             const rendaMensalOutros = document.getElementById("other-monthly-income")
