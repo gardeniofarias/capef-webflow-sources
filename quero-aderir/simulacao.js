@@ -163,7 +163,7 @@
 
             if(!checkElegibilite){
                 errorContainer.style.display = "block"
-                errorMsg.innerText = "CPF já é aderiu o plano"
+                errorMsg.innerText = "Você já é Participante do Plano."
                 return;
             }
            
