@@ -112,19 +112,9 @@
 
     const api = authFetch;
     
-     function sendWhatsAppMessage(phone, id) {
+     function sendWhatsAppMessage(phone, msg) {
 
-      var message = encodeURIComponent(`
-      VOCÊ ACABA DE RECEBER UMA INDICAÇÃO !
-      \n\n
-      Alguém que se importa com você te convidou para construir um futuro de possibilidades, 
-      por meio da pré-inscrição no Plano Família, novo 
-      Plano de Previdência destinado aos familiares dos 
-      funcionários do BNB/Empresas coligadas.
-      \n\n
-      Clique no link a seguir para garantir a sua pré-inscrição 
-      https://planofamilia.capef.com.br/preinscricao?id=${id}
-      `);
+      var message = msg;
 
       var url = "https://api.whatsapp.com/send?phone=" + phone + "&text=" + message;
 
@@ -157,11 +147,12 @@
         if (response.id) {
         
         	const id = response.id
+          const msg = response.mensagem
           
           formContainer.style.display = "none"
           successContainer.style.display = "flex"
 					
-          await sendWhatsAppMessage(celular, id)
+          await sendWhatsAppMessage(celular, msg)
 
         } else {
           errorContainer.style.display = "block"
