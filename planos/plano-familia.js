@@ -7,6 +7,7 @@
     const loadingIcon = document.getElementById("loading-icon-cv-plan");
     const choicesIndication = document.getElementById("choices-indication")
     const formContainer = document.getElementById("wf-form-plano_familia-indicacao")
+    const formContainer1 = document.getElementById("form-family-plan")
      const modalWa = document.getElementById("modal-wa")
     const modalEmail = document.getElementById("modal-email")
 
@@ -290,10 +291,13 @@
 
       successContainer.style.display = "none"
       formContainer.style.display = "flex"
+
       choicesIndication.style.display = "flex"
       modalEmail.style.display = "none"
+
       modalWa.style.display = "none"
       successContainer.style.display = "none"
+      formContainer1.style.display = "flex"
     }
     )
 
