@@ -140,12 +140,8 @@
             const formattedCPF = formatCPF(cpf);
             
             const response = await api(`${urlConsulta}/Elegibilidade/${formattedCPF}/PlanoCV`, { key: urlConsulta });
-            if (response) {
-                await setupToken({ url: urlConsulta });
-                return response;
-            } else {
-                return false;
-            }
+            
+            return response
         };
 
         async function getSimulation(cpf) {
@@ -158,13 +154,18 @@
             const elegibiliteResult = await cpfEligibilityPlanCV(cpf)
 
 
-            if(elegibiliteResult.aderiuCV){
+            if (elegibiliteResult.podeAderir) {
+                await setupToken({ url: urlConsulta });
+                
+            }else if(elegibiliteResult.aderiuCV){
                 errorContainer.style.display = "block"
-                errorMsg.innerText = "Você já é Participante do Plano."
+                errorMsg.innerText = "CPF já é aderiu o plano"
+                return;
+            }else{
+                
                 return;
             }
            
-            //await setupToken({ url: urlSimulacao });
 
             const valorContribuicao = document.getElementById("contribution-amount")
             const rendaMensalOutros = document.getElementById("other-monthly-income")
