@@ -162,7 +162,8 @@
                 errorMsg.innerText = "CPF já é aderiu o plano"
                 return;
             }else{
-                
+                errorContainer.style.display = "block"
+                errorMsg.innerText = "CPF não pode aderir o plano"
                 return;
             }
            
