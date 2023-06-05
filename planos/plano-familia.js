@@ -8,6 +8,7 @@
     const choicesIndication = document.getElementById("choices-indication")
     const formContainer = document.getElementById("wf-form-plano_familia-indicacao")
     const formContainer1 = document.getElementById("form-family-plan")
+    const modalContent = document.getElementById("form-family-plan-2")
      const modalWa = document.getElementById("modal-wa")
     const modalEmail = document.getElementById("modal-email")
 
@@ -293,9 +294,10 @@
       formContainer.style.display = "flex"
 
       choicesIndication.style.display = "flex"
-      modalEmail.style.display = "none"
+      // modalEmail.style.display = "none"
 
-      modalWa.style.display = "none"
+      // modalWa.style.display = "none"
+      modalContent.style.display = "none"
       successContainer.style.display = "none"
       formContainer1.style.display = "flex"
     }
