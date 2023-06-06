@@ -256,6 +256,7 @@
           errorMsg.innerText = "CPF inválido"
         } else {
           const result = await checkCPF(cpf)
+          console.log("result", result)
           if (result.id) {
             modalIndication.style.display = "flex"
           } else {
@@ -263,7 +264,7 @@
             errorMsg.style.display = "block"
             if(result.error){
               if(result.status === 204){
-                errorMsg.innerText =     "CPF não identificado em nossa base de dados."
+                errorMsg.innerText = "CPF não identificado em nossa base de dados."
               }else{
                 errorMsg.innerText = result.error
               }         
