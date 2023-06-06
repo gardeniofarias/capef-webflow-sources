@@ -263,11 +263,13 @@
             errorContainer.style.display = "block"
             errorMsg.style.display = "block"
             if(result.error){
+              
+                errorMsg.innerText = result.error
+                       
+            }else{
               if(Number(result.status) === 204){
                 errorMsg.innerText = "CPF não identificado em nossa base de dados."
-              }else{
-                errorMsg.innerText = result.error
-              }         
+              }
             }
           }
 
