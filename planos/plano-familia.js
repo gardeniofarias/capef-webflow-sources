@@ -1,6 +1,6 @@
 
 
-    var urlIndicacao =  "https://apiindicacaoplano.capef.com.br/"
+    var urlIndicacao =  "https://apiindicacaoplano.capef.com.br"
    //var urlIndicacao = "https://ici002.capef.com.br/apiindicacaoplano";
     const successContainer = document.getElementById("modal-success-indication")
     const errorMsg = document.getElementById("modal-error-indication-msg")
