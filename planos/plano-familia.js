@@ -262,7 +262,7 @@
             errorContainer.style.display = "block"
             errorMsg.style.display = "block"
             if(result.error){
-              errorMsg.innerText = result.error
+              errorMsg.innerText =  "CPF inválido e CPF não identificado em nossa base de dados."
             }
           }
 
