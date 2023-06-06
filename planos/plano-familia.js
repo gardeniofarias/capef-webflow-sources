@@ -1,6 +1,7 @@
 
 
-    var urlIndicacao = "https://ici002.capef.com.br/apiindicacaoplano";
+    var urlIndicacao =  "https://apiindicacaoplano.capef.com.br/"
+   //var urlIndicacao = "https://ici002.capef.com.br/apiindicacaoplano";
     const successContainer = document.getElementById("modal-success-indication")
     const errorMsg = document.getElementById("modal-error-indication-msg")
     const errorContainer = document.getElementById("modal-error-indication")
@@ -294,7 +295,7 @@
       formContainer.style.display = "flex"
 
       choicesIndication.style.display = "flex"
-      // modalEmail.style.display = "none"
+       modalEmail.style.display = "none"
 
       // modalWa.style.display = "none"
       modalContent.style.display = "none"
