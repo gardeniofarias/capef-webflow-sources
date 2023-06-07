@@ -285,7 +285,6 @@
         const month = $(tipoAtendimento === 1 ? "#mes-input" : "#mes-input-2").val();
         const year = $(tipoAtendimento === 1 ? "#year-input" : "#year-input-2").val();
 
-        console.log(day, month, year)
 
         getTimes({
             day,
@@ -412,7 +411,7 @@
                 const raw = {
                     ano: year,
                     dia: day,
-                    mes: Number(month) + 1,
+                    mes: Number(month),
                     plano: planInputValue,
                     assunto: tipoAtendimento,
                     horario: timeInputValue,
