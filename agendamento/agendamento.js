@@ -246,6 +246,9 @@
 
 
 
+
+
+
     async function loadCalendar() {
          preloader.style.display = "flex"
         const response = await api(`${urlSchedule}/calendario/atendimento/${tipoAtendimento}`);
@@ -423,7 +426,7 @@
                 preloader.style.display = "none";
             }
             $("#atendimento-presencial-submit, #atendimento-eletronico-submit").text("Enviar");
-
+            await loadCalendar()
             preloader.style.display = "none";
             return;
         } else {
