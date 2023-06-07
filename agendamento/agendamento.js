@@ -329,6 +329,7 @@
         $("#atendimento-presencial-submit, #atendimento-eletronico-submit").text("Enviar");
 
         if (response.id) {
+             await loadCalendar()
             $(".tab-button-box, .c-input-form, .c-input-form, .c-input-form, .c-input-tab, .c-input-form ").css("display", "none");
             $(".w-form-done").css("display", "block");
         } else {
@@ -425,7 +426,7 @@
                 await scheduleAttend(raw);
 
                 preloader.style.display = "none";
-                 await loadCalendar()
+               
             }
             $("#atendimento-presencial-submit, #atendimento-eletronico-submit").text("Enviar");
            
