@@ -104,12 +104,11 @@
 
         function normalizePrice(price) {
 
-            const normalized = price.toString().replace(/\D/g, '');
-            const integerPart = normalized.slice(0, -2);
-            const decimalPart = normalized.slice(-2);
-            const formattedInteger = integerPart.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-            const normalizedPrice = formattedInteger + '.' + decimalPart;
-            return normalizedPrice;
+            const formattedCurrency = price.toLocaleString('pt-BR', {
+                style: 'currency',
+                currency: 'BRL',
+            });
+            return formattedCurrency;
 
         }
 
@@ -180,11 +179,11 @@
             if(response.rendaMensalCV){
                 simulatorResults.style.display = "flex"
                 simulatorResults.style.opacity = 1
-                rendaMensalCV.innerText = `R$ ${normalizePrice(response.rendaMensalCV)}`
-                valorContribuicao.innerText = `R$ ${normalizePrice(response.valorContribuicao)}`
-                rendaMensalOutros.innerText = `R$ ${normalizePrice(response.rendaMensalOutros)}`
-                saldoAcumulado.innerText = `R$ ${normalizePrice(response.saldoAcumuladoCV)}`
-                saldoAcumuladoOutros.innerText = `R$ ${normalizePrice(response.saldoAcumuladoOutros)}`
+                rendaMensalCV.innerText = `${normalizePrice(response.rendaMensalCV)}`
+                valorContribuicao.innerText = `${normalizePrice(response.valorContribuicao)}`
+                rendaMensalOutros.innerText = `${normalizePrice(response.rendaMensalOutros)}`
+                saldoAcumulado.innerText = `${normalizePrice(response.saldoAcumuladoCV)}`
+                saldoAcumuladoOutros.innerText = `${normalizePrice(response.saldoAcumuladoOutros)}`
                 aposentadoriaPrevista.innerText = `${response.aposentadoriaPrevista}`
             }else{
                 errorContainer.style.display = "block"
