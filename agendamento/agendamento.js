@@ -424,9 +424,10 @@
                 await scheduleAttend(raw);
 
                 preloader.style.display = "none";
+                 await loadCalendar()
             }
             $("#atendimento-presencial-submit, #atendimento-eletronico-submit").text("Enviar");
-            await loadCalendar()
+           
             preloader.style.display = "none";
             return;
         } else {
