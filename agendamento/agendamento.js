@@ -15,7 +15,7 @@
 
     async function setupToken() {
 
-        const authResponse = await fetch("https://ici002.capef.com.br/apiagendamento/auth/access-token", {
+        const authResponse = await fetch("https://apiagendamento.capef.com.br/apiagendamento/auth/access-token", {
             method: "POST",
             body: JSON.stringify({
                 username: "Hero99",
@@ -102,8 +102,9 @@
         preloader.style.display = "none";
     }
     const api = authFetch;
-    var urlSchedule = "https://ici002.capef.com.br/apiagendamento";
-    var urlCalend = "https://ici002.capef.com.br/apiagendamento";
+
+    var urlSchedule = "https://apiagendamento.capef.com.br";
+    var urlCalend = "https://apiagendamento.capef.com.br";
 
 
     function showFormFailMessage(message) {
