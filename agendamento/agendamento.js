@@ -355,7 +355,7 @@
             getTimes({
                 day,
                 year,
-                month: Number(month) + 1,
+                month: Number(month),
                 atendimentoType: tipoAtendimento
             });
         });
