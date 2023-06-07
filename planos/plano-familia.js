@@ -295,20 +295,18 @@
     )
     
      document.getElementById("btn-indicate-again").addEventListener("click", async () => {
-     document.getElementById("Whatsapp").value = ""
-       document.getElementById("e-mail-3").value = ""
 
+      document.getElementById("Whatsapp").value = ""
+      document.getElementById("e-mail-3").value = ""
       successContainer.style.display = "none"
       formContainer.style.display = "flex"
-
       choicesIndication.style.display = "flex"
-       modalEmail.style.display = "none"
-
-      // modalWa.style.display = "none"
-      modalContent.style.display = "none"
+      modalEmail.style.display = "none"
+      modalWa.style.display = "none"
       successContainer.style.display = "none"
-      formContainer1.style.display = "flex"
+
     }
+    
     )
 
 
@@ -347,3 +345,5 @@ function decreaseFontSize() {
 document.getElementById("decreaseFontSize").addEventListener("click", () => {
   decreaseFontSize();
 });
+
+
