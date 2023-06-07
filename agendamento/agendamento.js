@@ -15,7 +15,7 @@
 
     async function setupToken() {
 
-        const authResponse = await fetch("https://apiagendamento.capef.com.br/apiagendamento/auth/access-token", {
+        const authResponse = await fetch("https://apiagendamento.capef.com.br/auth/access-token", {
             method: "POST",
             body: JSON.stringify({
                 username: "Hero99",
