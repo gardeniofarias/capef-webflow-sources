@@ -1,7 +1,8 @@
 
 
+    $("#Whatsapp").mask("(99) 9 9999-9999");
+
     var urlIndicacao =  "https://apiindicacaoplano.capef.com.br"
-   //var urlIndicacao = "https://ici002.capef.com.br/apiindicacaoplano";
     const successContainer = document.getElementById("modal-success-indication")
     const errorMsg = document.getElementById("modal-error-indication-msg")
     const errorContainer = document.getElementById("modal-error-indication")
@@ -119,7 +120,7 @@
 
       var message = msg;
 
-      var url = "https://api.whatsapp.com/send?phone=" + phone + "&text=" + message;
+      var url = "https://api.whatsapp.com/send?phone=" + "55"+phone + "&text=" + message;
 
       window.open(url, "_blank");
     }
