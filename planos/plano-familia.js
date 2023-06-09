@@ -127,12 +127,15 @@
     
     const customError = "Erro desconhecido, actualize a pagina e tente novamente"
 
+    const formatPhone = (phone) => phone.replace(/\D/g, "")
 
     async function indicateByWhatsapp() {
       errorContainer.style.display = "none"
 
+
+
       const cpf = document.getElementById("CPF").value.replace(/\./g, "").replace("-", "")
-      const celular = document.getElementById("Whatsapp").value
+      const celular =  formatPhone(document.getElementById("Whatsapp").value)
     
       const isPhoneValid = celular.length === 11;
 
