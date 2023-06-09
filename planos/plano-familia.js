@@ -120,9 +120,9 @@
 
       var message = msg;
 
-      var url = "https://api.whatsapp.com/send?phone=" + "55"+phone + "&text=" + message;
+      var url = "https://api.whatsapp.com/send?phone=55" +phone + "&text=" + message;
 
-      window.open(url, "_blank");
+      window.location.href = url;
     }
     
     const customError = "Erro desconhecido, actualize a pagina e tente novamente"
