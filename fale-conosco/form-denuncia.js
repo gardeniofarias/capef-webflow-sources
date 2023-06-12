@@ -88,7 +88,7 @@
       const data = await response.json()
       const protocol = data.protocol
 
-      if (protocol && response.status >= 200 && response.status <= 204) {
+      if (protocol && response.status >= 200 && response.status <= 204 && protocol !== "Erro ao gerar protocolo") {
         formDenuncia.style.display = "none"
         msgSuccessCtn2.style.display = "flex"
         msgSuccess2.innerText = "Dados da denúncia enviado com sucesso, Número do protocolo: " + protocol

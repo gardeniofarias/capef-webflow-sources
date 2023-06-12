@@ -119,7 +119,7 @@
       const data = await response.json()
       const protocol = data.protocol
 
-      if (protocol && response.status >= 200 && response.status <= 204) {
+      if (protocol && response.status >= 200 && response.status <= 204 && protocol !== "Erro ao gerar protocolo") {
         formOuvidoria.style.display = "none"
         msgSuccessCtn1.style.display = "flex"
         msgSuccess1.innerText = "Dados de ouvidoria enviado com sucesso, Novo número do protocolo: " + protocol
