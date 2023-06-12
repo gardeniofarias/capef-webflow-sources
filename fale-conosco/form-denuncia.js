@@ -88,10 +88,10 @@
       const data = await response.json()
       const protocol = data.protocol
 
-      if (protocol && response.status >= 200 && response.status <= 241) {
+      if (protocol && response.status >= 200 && response.status <= 204) {
         formDenuncia.style.display = "none"
         msgSuccessCtn2.style.display = "flex"
-        msgSuccess2.innerText = "Dados de atendimento envaido com sucesso, Número do protocol " + protocol
+        msgSuccess2.innerText = "Dados da denúncia enviado com sucesso, Número do protocolo: " + protocol
       } else {
         errorContainer2.style.display = "block"
         errorMsg2.style.display = "block"

@@ -202,10 +202,10 @@
       const protocol = data.protocol
 
 
-      if (protocol && response.status >= 200 && response.status <= 241) {
+      if (protocol && response.status >= 200 && response.status <= 204) {
       	formAttend.style.display = "none"
         msgSuccessCtn.style.display = "flex"
-        msgSuccess.innerText = "Dados de atendimento envaido com sucesso, Número do protocol " + protocol
+        msgSuccess.innerText = "Dados do atendimento enviado com sucesso, Número do protocolo: " + protocol
       } else {
         errorMsg.innerText = "Erro ao gerar o número do Protocolo, tente novamente.";
         errorContainer.style.display = "block";

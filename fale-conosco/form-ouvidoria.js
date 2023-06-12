@@ -119,10 +119,10 @@
       const data = await response.json()
       const protocol = data.protocol
 
-      if (protocol && response.status >= 200 && response.status <= 241) {
+      if (protocol && response.status >= 200 && response.status <= 204) {
         formOuvidoria.style.display = "none"
         msgSuccessCtn1.style.display = "flex"
-        msgSuccess1.innerText = "Dados de atendimento envaido com sucesso, Novo número do protocol " + protocol
+        msgSuccess1.innerText = "Dados de ouvidoria enviado com sucesso, Novo número do protocolo: " + protocol
       } else {
         errorContainer1.style.display = "block"
         errorMsg1.style.display = "block"
