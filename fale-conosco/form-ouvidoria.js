@@ -10,6 +10,8 @@
         key: urlConsulta
       })
 
+      console.log(response)
+
       if (response.valido) {
         return response.valido
       } else {
@@ -89,6 +91,8 @@
 
     const checkProtocol = await validateProtocol({ cpf, protocol: oldProtocol })
 
+    console.log(checkProtocol)
+
       if(!checkProtocol){
           return;
       }
@@ -102,7 +106,7 @@
             CPF: cpf,
             Telefone: phone,
             "e-mail": email,
-            Solicitação: solicitation,
+            "Solicitação": solicitation,
             "Resumo da solicitação": assunto,
             "Protocolo de atendimento": oldProtocol
           }
