@@ -65,7 +65,7 @@
         errorContainer1.style.display = "block"
         errorMsg1.style.display = "block"
         errorMsg1.innerText = "Solicitação não pode estar vazio"
-      }else if(isValidProtocol){
+      }else if(!isValidProtocol){
         errorContainer1.style.display = "block"
         errorMsg1.style.display = "block"
         errorMsg1.innerText = "Numero de protocolo invalido"
