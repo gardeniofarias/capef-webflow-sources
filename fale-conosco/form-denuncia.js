@@ -19,7 +19,8 @@
       const cpf = document.getElementById("cpf01").value
       const phone = document.getElementById("phone01").value
       const email = document.getElementById("e-mail-2").value
-      const solicitation = document.getElementById("Solicita-o").value
+      const solicitation = document.getElementById("Solicita-2").value
+      const assunto = document.getElementById("assunto-2")
       const oldProtocol = document.getElementById("Protocolo-de-atendimento").value 
       const isValidProtocol = oldProtocol.trim() !== ""
 
@@ -59,8 +60,8 @@
         errorContainer2.style.display = "none";
         const cpfIsValid = await checkCPF(cpf)
         if (cpfIsValid) {
-            console.log("test", { username: name, cpf: formatCPF(cpf), phone: formatPhone(phone), email, oldProtocol, solicitation })
-            await getProtocolDenuncia({ username: name, cpf: formatCPF(cpf), phone: formatPhone(phone), email, oldProtocol, solicitation })
+            console.log("test", { username: name, cpf: formatCPF(cpf), phone: formatPhone(phone), email, oldProtocol, solicitation, assunto })
+            await getProtocolDenuncia({ username: name, cpf: formatCPF(cpf), phone: formatPhone(phone), email, oldProtocol, solicitation, assunto })
         } else {
           errorContainer2.style.display = "block"
           errorMsg2.style.display = "block"
@@ -70,7 +71,7 @@
 
     })
 
-    async function getProtocolDenuncia({ username, cpf, phone, email, oldProtocol, solicitation }) {
+    async function getProtocolDenuncia({ username, cpf, phone, email, oldProtocol, solicitation, assunto }) {
 
     const checkProtocol = await validateProtocol({ cpf, protocol: oldProtocol })
 
@@ -88,7 +89,7 @@
             Telefone: phone,
             "e-mail": email,
             Solicitação: solicitation,
-            "Resumo da solicitação": solicitation,
+            "Resumo da solicitação": assunto,
             "Protocolo de atendimento": oldProtocol
           }
         }),
