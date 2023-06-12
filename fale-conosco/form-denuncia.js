@@ -21,8 +21,7 @@
       const email = document.getElementById("e-mail").value
       const solicitation = document.getElementById("Solicita-2").value
       const assunto = document.getElementById("assunto-2")
-      const isValidProtocol = oldProtocol.trim() !== ""
-
+      
       const formatCPF = (cpf) => cpf.replaceAll(".", "").replaceAll("-", "");
       const formatPhone = (phone) => phone.replace(/\D/g, "")
 
