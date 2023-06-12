@@ -1,5 +1,9 @@
 
-
+    const errorMsg1 = document.getElementById("error-msg-1")
+    const errorContainer1 = document.getElementById("msg-ctn-1")
+    const msgSuccess1 = document.getElementById("success-msg-1")
+    const msgSuccessCtn1 = document.getElementById("success-ctn-1")
+     
      async function validateProtocol({ cpf, protocol }) {
 
       const response = await api(`${urlConsulta}/Validar/Protocolo/Tactium/?NrProtocolo=${protocol}&CPF=${cpf}`, {
@@ -9,8 +13,8 @@
       if (response.valido) {
         return false
       } else {
-        errorMsg.innerText = "Numero do Protocolo invalido";
-        errorContainer.style.display = "block";
+        errorMsg1.innerText = "Numero do Protocolo invalido";
+        errorContainer1.style.display = "block";
         return true
       }
 
@@ -22,8 +26,8 @@
 
     buttonFormOuvidoria.addEventListener("click", async () => {
 
-      errorMsg.innerText = ""
-      errorContainer.style.display = "none"
+      errorMsg1.innerText = ""
+      errorContainer1.style.display = "none"
 
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -42,38 +46,38 @@
       const isValidProtocol = oldProtocol.trim() !== ""
 
       if (!isNameValid) {
-        errorMsg.innerText = "Campo nome não deve estar vazio";
-        errorContainer.style.display = "block";
+        errorMsg1.innerText = "Campo nome não deve estar vazio";
+        errorContainer1.style.display = "block";
       } else if (!isCPFValid) {
-        errorContainer.style.display = "block"
-        errorMsg.style.display = "block"
-        errorMsg.innerText = "CPF inválido"
+        errorContainer1.style.display = "block"
+        errorMsg1.style.display = "block"
+        errorMsg1.innerText = "CPF inválido"
       } else if (!isPhoneValid) {
-        errorContainer.style.display = "block"
-        errorMsg.style.display = "block"
-        errorMsg.innerText = "Número de telefone inválido"
+        errorContainer1.style.display = "block"
+        errorMsg1.style.display = "block"
+        errorMsg1.innerText = "Número de telefone inválido"
       } else if (!isEmailValid) {
-        errorContainer.style.display = "block"
-        errorMsg.style.display = "block"
-        errorMsg.innerText = "Email inválido"
+        errorContainer1.style.display = "block"
+        errorMsg1.style.display = "block"
+        errorMsg1.innerText = "Email inválido"
       } else if (!iSolicitationValid) {
-        errorContainer.style.display = "block"
-        errorMsg.style.display = "block"
-        errorMsg.innerText = "Solicitação não pode estar vazio"
+        errorContainer1.style.display = "block"
+        errorMsg1.style.display = "block"
+        errorMsg1.innerText = "Solicitação não pode estar vazio"
       }else if(isValidProtocol){
-        errorContainer.style.display = "block"
-        errorMsg.style.display = "block"
-        errorMsg.innerText = "Numero de protocolo invalido"
+        errorContainer1.style.display = "block"
+        errorMsg1.style.display = "block"
+        errorMsg1.innerText = "Numero de protocolo invalido"
       }else {
-        errorContainer.style.display = "none";
+        errorContainer1.style.display = "none";
         const cpfIsValid = await checkCPF(cpf)
         if (cpfIsValid) {
          console.log("test", { username: name, cpf: formatCPF(cpf), phone: formatPhone(phone), email, oldProtocol, solicitation })
          await getProtocol({ username: name, cpf: formatCPF(cpf), phone: formatPhone(phone), email, oldProtocol, solicitation })
         } else {
-          errorContainer.style.display = "block"
-          errorMsg.style.display = "block"
-          errorMsg.innerText = "CPF invalido"
+          errorContainer1.style.display = "block"
+          errorMsg1.style.display = "block"
+          errorMsg1.innerText = "CPF invalido"
         }
         
       }
@@ -112,12 +116,12 @@
 
       if (protocol) {
         formOuvidoria.style.display = "none"
-        msgSuccessCtn.style.display = "flex"
-        msgSuccess.innerText = "Dados de atendimento envaido com sucesso, Novo número do protocol " + protocol
+        msgSuccessCtn1.style.display = "flex"
+        msgSuccess1.innerText = "Dados de atendimento envaido com sucesso, Novo número do protocol " + protocol
       } else {
-        errorContainer.style.display = "block"
-        errorMsg.style.display = "block"
-        errorMsg.innerText = "Erro ao gerar protocolo"
+        errorContainer1.style.display = "block"
+        errorMsg1.style.display = "block"
+        errorMsg1.innerText = "Erro ao gerar protocolo"
       }
 
     }

@@ -1,12 +1,17 @@
 
 
+    const errorMsg2 = document.getElementById("error-msg-2")
+    const errorContainer2 = document.getElementById("msg-ctn-2")
+    const msgSuccess2 = document.getElementById("success-msg-2")
+    const msgSuccessCtn2 = document.getElementById("success-ctn-2")
+    
     const buttonFormDenuncia = document.getElementById("form-denuncia-send")
     const formDenuncia = document.getElementById("wf-form-Den-ncia")
 
     buttonFormDenuncia.addEventListener("click", async () => {
 
-      errorMsg.innerText = ""
-      errorContainer.style.display = "none"
+      errorMsg2.innerText = ""
+      errorContainer2.style.display = "none"
 
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -28,38 +33,38 @@
       const iSolicitationValid = solicitation.trim() !== "";
 
       if (!isNameValid) {
-        errorMsg.innerText = "Campo nome não deve estar vazio";
-        errorContainer.style.display = "block";
+        errorMsg2.innerText = "Campo nome não deve estar vazio";
+        errorContainer2.style.display = "block";
       } else if (!isCPFValid) {
-        errorContainer.style.display = "block"
-        errorMsg.style.display = "block"
-        errorMsg.innerText = "CPF inválido"
+        errorContainer2.style.display = "block"
+        errorMsg2.style.display = "block"
+        errorMsg2.innerText = "CPF inválido"
       } else if (!isPhoneValid) {
-        errorContainer.style.display = "block"
-        errorMsg.style.display = "block"
-        errorMsg.innerText = "Número de telefone inválido"
+        errorContainer2.style.display = "block"
+        errorMsg2.style.display = "block"
+        errorMsg2.innerText = "Número de telefone inválido"
       } else if (!isEmailValid) {
-        errorContainer.style.display = "block"
-        errorMsg.style.display = "block"
-        errorMsg.innerText = "Email inválido"
+        errorContainer2.style.display = "block"
+        errorMsg2.style.display = "block"
+        errorMsg2.innerText = "Email inválido"
       } else if (!iSolicitationValid) {
-        errorContainer.style.display = "block"
-        errorMsg.style.display = "block"
-        errorMsg.innerText = "Solicitação não pode estar vazio"
+        errorContainer2.style.display = "block"
+        errorMsg2.style.display = "block"
+        errorMsg2.innerText = "Solicitação não pode estar vazio"
       }else if(isValidProtocol){
-        errorContainer.style.display = "block"
-        errorMsg.style.display = "block"
-        errorMsg.innerText = "Numero de protocolo invalido"
+        errorContainer2.style.display = "block"
+        errorMsg2.style.display = "block"
+        errorMsg2.innerText = "Numero de protocolo invalido"
       } else {
-        errorContainer.style.display = "none";
+        errorContainer2.style.display = "none";
         const cpfIsValid = await checkCPF(cpf)
         if (cpfIsValid) {
             console.log("test", { username: name, cpf: formatCPF(cpf), phone: formatPhone(phone), email, oldProtocol, solicitation })
             await getProtocolDenuncia({ username: name, cpf: formatCPF(cpf), phone: formatPhone(phone), email, oldProtocol, solicitation })
         } else {
-          errorContainer.style.display = "block"
-          errorMsg.style.display = "block"
-          errorMsg.innerText = "CPF invalido"
+          errorContainer2.style.display = "block"
+          errorMsg2.style.display = "block"
+          errorMsg2.innerText = "CPF invalido"
         }
       }
 
@@ -97,12 +102,12 @@
 
       if (protocol) {
         formDenuncia.style.display = "none"
-        msgSuccessCtn.style.display = "flex"
-        msgSuccess.innerText = "Dados de atendimento envaido com sucesso, Novo número do protocol " + protocol
+        msgSuccessCtn2.style.display = "flex"
+        msgSuccess2.innerText = "Dados de atendimento envaido com sucesso, Novo número do protocol " + protocol
       } else {
-        errorContainer.style.display = "block"
-        errorMsg.style.display = "block"
-        errorMsg.innerText = "Erro ao gerar protocolo"
+        errorContainer2.style.display = "block"
+        errorMsg2.style.display = "block"
+        errorMsg2.innerText = "Erro ao gerar protocolo"
       }
 
     }
