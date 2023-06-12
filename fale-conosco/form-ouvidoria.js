@@ -90,10 +90,12 @@
     async function getProtocolOuvidoria({ username, cpf, phone, email, oldProtocol, solicitation, assunto }) {
 
     const checkProtocol = await validateProtocol({ cpf, protocol: oldProtocol })
-
-    console.log(checkProtocol)
+      preloader.style.display = "flex";
+      
+      console.log(checkProtocol)
 
       if(!checkProtocol){
+          preloader.style.display = "none";
           return;
       }
 
@@ -115,6 +117,8 @@
           "Content-Type": "application/json"
         }
       })
+
+      preloader.style.display = "none";
 
       const data = await response.json()
       const protocol = data.protocol

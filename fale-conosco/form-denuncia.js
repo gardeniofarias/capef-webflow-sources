@@ -66,7 +66,7 @@
     })
 
     async function getProtocolDenuncia({ username, cpf, phone, email, solicitation, assunto }) {
-
+      preloader.style.display = "flex";
       const response = await fetch(`${urlAPI_Form}/forms`, {
         method: "POST",
         body: JSON.stringify({
@@ -84,6 +84,8 @@
           "Content-Type": "application/json"
         }
       })
+
+      preloader.style.display = "none";
 
       const data = await response.json()
       const protocol = data.protocol
