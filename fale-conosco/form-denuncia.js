@@ -20,7 +20,7 @@
       const phone = document.getElementById("phone03").value
       const email = document.getElementById("e-mail").value
       const solicitation = document.getElementById("Solicita-2").value
-      const assunto = document.getElementById("assunto-2")
+      const assunto = document.getElementById("assunto-2").value
       
       const formatCPF = (cpf) => cpf.replaceAll(".", "").replaceAll("-", "");
       const formatPhone = (phone) => phone.replace(/\D/g, "")
@@ -88,7 +88,7 @@
       const data = await response.json()
       const protocol = data.protocol
 
-      if (protocol) {
+      if (protocol && Number(response.status) === 204) {
         formDenuncia.style.display = "none"
         msgSuccessCtn2.style.display = "flex"
         msgSuccess2.innerText = "Dados de atendimento envaido com sucesso, Número do protocol " + protocol

@@ -11,7 +11,7 @@
       })
 
       if (response.valido) {
-        return false
+        return response.valido
       } else {
         errorMsg1.innerText = "Numero do Protocolo invalido";
         errorContainer1.style.display = "block";
@@ -89,9 +89,9 @@
 
     const checkProtocol = await validateProtocol({ cpf, protocol: oldProtocol })
 
-    if(!checkProtocol){
-        return;
-    }
+      if(!checkProtocol){
+          return;
+      }
 
       const response = await fetch(`${urlAPI_Form}/forms`, {
         method: "POST",
@@ -115,7 +115,7 @@
       const data = await response.json()
       const protocol = data.protocol
 
-      if (protocol) {
+      if (protocol && Number(response.status) === 204) {
         formOuvidoria.style.display = "none"
         msgSuccessCtn1.style.display = "flex"
         msgSuccess1.innerText = "Dados de atendimento envaido com sucesso, Novo número do protocol " + protocol
