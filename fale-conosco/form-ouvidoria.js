@@ -15,7 +15,7 @@
       if (response.valido) {
         return response.valido
       } else {
-        errorMsg1.innerText = "Numero do Protocolo invalido";
+        errorMsg1.innerText = "Numero do Protocolo inválido";
         errorContainer1.style.display = "block";
         return false
       }
@@ -70,7 +70,7 @@
       }else if(!isValidProtocol){
         errorContainer1.style.display = "block"
         errorMsg1.style.display = "block"
-        errorMsg1.innerText = "Numero de protocolo invalido"
+        errorMsg1.innerText = "Numero de protocolo inválido"
       }else {
         errorContainer1.style.display = "none";
         const cpfIsValid = await checkCPF(cpf)
@@ -80,7 +80,7 @@
         } else {
           errorContainer1.style.display = "block"
           errorMsg1.style.display = "block"
-          errorMsg1.innerText = "CPF invalido"
+          errorMsg1.innerText = "CPF não identificado em nossa base de dados"
         }
         
       }
@@ -126,11 +126,11 @@
       if (protocol && response.status >= 200 && response.status <= 204 && protocol !== "Erro ao gerar protocolo") {
         formOuvidoria.style.display = "none"
         msgSuccessCtn1.style.display = "flex"
-        msgSuccess1.innerText = "Dados de ouvidoria enviado com sucesso, Novo número do protocolo: " + protocol
+        msgSuccess1.innerText = `Sua mensagem foi enviada com sucesso e o seu protocolo de atendimento é ${protocol}. Em breve, a Capef irá contatá-lo.`
       } else {
         errorContainer1.style.display = "block"
         errorMsg1.style.display = "block"
-        errorMsg1.innerText = "Erro ao gerar protocolo"
+        errorMsg1.innerText = "Erro ao gerar o número de ocorrência, tente novamente"
       }
 
     }

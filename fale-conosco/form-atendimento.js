@@ -1,19 +1,4 @@
-    
-    // const loadingIcon = document.getElementById("loading-icon");
-    // const preloader = document.getElementById("preloader");
-    // loadingIcon.style.background = "#28343e";
-    // loadingIcon.style.padding = "10px";
-    // loadingIcon.style.borderRadius = "6px";
-    // loadingIcon.style.boxShadow = "0px 0px 0px 1px rgba(0, 0, 0, 0.1), 0px 2px 4px rgba(0, 0, 0, 0.2)";
-    // if (preloader) {
-    //     preloader.style.display = "none";
-    //     preloader.style.opacity = 1;
-    //     preloader.style.position = "fixed";
-    //     preloader.style.top = 0;
-    //     preloader.style.left = 0;
-    //     preloader.style.width = "100%";
-    //     preloader.style.height = "100%";
-    // }
+
     
     
     const activeTabe = ""
@@ -50,7 +35,6 @@
       try {
         let token = localStorage.getItem(options.key);
 
-        // preloader.style.display = "flex";
 
         const headers = {
           ...options.headers,
@@ -62,7 +46,6 @@
           headers
         });
 
-        // preloader.style.display = "none";
 
         if (dataResponse.status === 401) {
           localStorage.removeItem(options.key);

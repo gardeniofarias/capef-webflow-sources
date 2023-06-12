@@ -1,5 +1,7 @@
 
 
+    
+
     const errorMsg2 = document.getElementById("error-msg-2")
     const errorContainer2 = document.getElementById("msg-ctn-2")
     const msgSuccess2 = document.getElementById("success-msg-2")
@@ -59,7 +61,7 @@
         } else {
           errorContainer2.style.display = "block"
           errorMsg2.style.display = "block"
-          errorMsg2.innerText = "CPF invalido"
+          errorMsg2.innerText = "CPF não identificado em nossa base de dados"
         }
       }
 
@@ -93,11 +95,11 @@
       if (protocol && response.status >= 200 && response.status <= 204 && protocol !== "Erro ao gerar protocolo") {
         formDenuncia.style.display = "none"
         msgSuccessCtn2.style.display = "flex"
-        msgSuccess2.innerText = "Dados da denúncia enviado com sucesso, Número do protocolo: " + protocol
+        msgSuccess2.innerText = `Sua mensagem foi enviada com sucesso e o seu protocolo de atendimento é ${protocol}. Em breve, a Capef irá contatá-lo.`
       } else {
         errorContainer2.style.display = "block"
         errorMsg2.style.display = "block"
-        errorMsg2.innerText = "Erro ao gerar protocolo"
+        errorMsg2.innerText = "Erro ao gerar o número de ocorrência, tente novamente"
       }
 
     }
