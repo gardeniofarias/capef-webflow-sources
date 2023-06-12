@@ -74,7 +74,7 @@
         const cpfIsValid = await checkCPF(cpf)
         if (cpfIsValid) {
          console.log("test", { username: name, cpf: formatCPF(cpf), phone: formatPhone(phone), email, oldProtocol, solicitation, assunto })
-         await getProtocol({ username: name, cpf: formatCPF(cpf), phone: formatPhone(phone), email, oldProtocol, solicitation, assunto })
+         await getProtocolOuvidoria({ username: name, cpf: formatCPF(cpf), phone: formatPhone(phone), email, oldProtocol, solicitation, assunto })
         } else {
           errorContainer1.style.display = "block"
           errorMsg1.style.display = "block"

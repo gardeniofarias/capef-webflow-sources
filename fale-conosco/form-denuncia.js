@@ -15,13 +15,12 @@
 
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-      const name = document.getElementById("Nome-2").value
-      const cpf = document.getElementById("cpf01").value
-      const phone = document.getElementById("phone01").value
-      const email = document.getElementById("e-mail-2").value
+      const name = document.getElementById("Nome").value
+      const cpf = document.getElementById("cpf03").value
+      const phone = document.getElementById("phone03").value
+      const email = document.getElementById("e-mail").value
       const solicitation = document.getElementById("Solicita-2").value
       const assunto = document.getElementById("assunto-2")
-      const oldProtocol = document.getElementById("Protocolo-de-atendimento").value 
       const isValidProtocol = oldProtocol.trim() !== ""
 
       const formatCPF = (cpf) => cpf.replaceAll(".", "").replaceAll("-", "");
@@ -52,16 +51,12 @@
         errorContainer2.style.display = "block"
         errorMsg2.style.display = "block"
         errorMsg2.innerText = "Solicitação não pode estar vazio"
-      }else if(isValidProtocol){
-        errorContainer2.style.display = "block"
-        errorMsg2.style.display = "block"
-        errorMsg2.innerText = "Numero de protocolo invalido"
       } else {
         errorContainer2.style.display = "none";
         const cpfIsValid = await checkCPF(cpf)
         if (cpfIsValid) {
-            console.log("test", { username: name, cpf: formatCPF(cpf), phone: formatPhone(phone), email, oldProtocol, solicitation, assunto })
-            await getProtocolDenuncia({ username: name, cpf: formatCPF(cpf), phone: formatPhone(phone), email, oldProtocol, solicitation, assunto })
+            console.log("test", { username: name, cpf: formatCPF(cpf), phone: formatPhone(phone), email, solicitation, assunto })
+            await getProtocolDenuncia({ username: name, cpf: formatCPF(cpf), phone: formatPhone(phone), email, solicitation, assunto })
         } else {
           errorContainer2.style.display = "block"
           errorMsg2.style.display = "block"
@@ -71,13 +66,7 @@
 
     })
 
-    async function getProtocolDenuncia({ username, cpf, phone, email, oldProtocol, solicitation, assunto }) {
-
-    const checkProtocol = await validateProtocol({ cpf, protocol: oldProtocol })
-
-    if(!checkProtocol){
-        return;
-    }
+    async function getProtocolDenuncia({ username, cpf, phone, email, solicitation, assunto }) {
 
       const response = await fetch(`${urlAPI_Form}/forms`, {
         method: "POST",
@@ -90,7 +79,6 @@
             "e-mail": email,
             Solicitação: solicitation,
             "Resumo da solicitação": assunto,
-            "Protocolo de atendimento": oldProtocol
           }
         }),
         headers: {
@@ -104,7 +92,7 @@
       if (protocol) {
         formDenuncia.style.display = "none"
         msgSuccessCtn2.style.display = "flex"
-        msgSuccess2.innerText = "Dados de atendimento envaido com sucesso, Novo número do protocol " + protocol
+        msgSuccess2.innerText = "Dados de atendimento envaido com sucesso, Número do protocol " + protocol
       } else {
         errorContainer2.style.display = "block"
         errorMsg2.style.display = "block"
