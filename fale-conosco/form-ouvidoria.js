@@ -17,7 +17,7 @@
       } else {
         errorMsg1.innerText = "Numero do Protocolo invalido";
         errorContainer1.style.display = "block";
-        return true
+        return false
       }
 
     }
