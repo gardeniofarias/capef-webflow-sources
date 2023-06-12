@@ -202,7 +202,7 @@
       const protocol = data.protocol
 
 
-      if (protocol && Number(response.status) === 204) {
+      if (protocol && response.status >= 200 && response.status <= 241) {
       	formAttend.style.display = "none"
         msgSuccessCtn.style.display = "flex"
         msgSuccess.innerText = "Dados de atendimento envaido com sucesso, Número do protocol " + protocol

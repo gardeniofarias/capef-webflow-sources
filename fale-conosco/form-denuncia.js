@@ -88,7 +88,7 @@
       const data = await response.json()
       const protocol = data.protocol
 
-      if (protocol && Number(response.status) === 204) {
+      if (protocol && response.status >= 200 && response.status <= 241) {
         formDenuncia.style.display = "none"
         msgSuccessCtn2.style.display = "flex"
         msgSuccess2.innerText = "Dados de atendimento envaido com sucesso, Número do protocol " + protocol
