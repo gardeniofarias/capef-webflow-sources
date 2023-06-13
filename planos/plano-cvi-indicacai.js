@@ -4,7 +4,6 @@
    async function setupToken({url}) {
         let token = localStorage.getItem(url);
 
-        if (!token) {
             const authResponse = await fetch(`${url}/Auth/Access-Token`, {
                 method: "POST",
                 body: JSON.stringify({
@@ -24,7 +23,7 @@
             token = authData.access_Token;
 
             localStorage.setItem(url, token);
-        }
+        
     }
 
     async function authFetch(url, options = {}) {
@@ -151,6 +150,7 @@ Webflow.push(function () {
   });
 
   const btnCloseIndicacao = document.querySelectorAll('.btn-close-indicacao');
+  
   btnCloseIndicacao.forEach(item => {
     item.addEventListener('click', () => {
       window.location.reload();
