@@ -323,7 +323,7 @@ Webflow.push(function () {
     const formData = {
       nome: name.value,
       nomeEmail:email.value,
-      indicacao: subjects.value,
+      indicacao: subject.value,
       cpfIndicando:cpf.value.replace(/\./g, "").replace("-",""),
     };
 
