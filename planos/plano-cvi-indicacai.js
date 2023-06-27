@@ -337,17 +337,16 @@ Webflow.push(function () {
       body: JSON.stringify(formData),
     });
 
-    if(response.status === 200 || response.status === 201){
-      localStorage.removeItem("usr");
+    if(response.id){
+        localStorage.removeItem("usr");
         document.querySelector(".multistep-tabs-content").style.display =
           "none";
         successMessage.style.display = "block";
     }else{
-      errorMessageFormIndicar.style.display = "block";
+       errorMessageFormIndicar.style.display = "block";
       getElement("#inner-error-message").innerHTML = response.error;
     
-    }
-     
+    }  
       
   }
 
