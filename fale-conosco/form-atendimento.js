@@ -209,7 +209,7 @@
       if (protocol && response.status >= 200 && response.status <= 204) {
       	formAttend.style.display = "none"
         msgSuccessCtn.style.display = "flex"
-        msgSuccess.innerText = "Dados do atendimento enviado com sucesso, Número do protocolo: " + protocol
+        msgSuccess2.innerText = `Sua mensagem foi enviada com sucesso e o seu protocolo de atendimento é ${protocol}. Em breve, a Capef irá contatá-lo.`
       } else {
         errorMsg.innerText = "Erro ao gerar o número do Protocolo, tente novamente.";
         errorContainer.style.display = "block";
