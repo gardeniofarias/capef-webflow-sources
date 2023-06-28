@@ -23,6 +23,28 @@
       const email = document.getElementById("e-mail").value
       const solicitation = document.getElementById("Solicita-2").value
       const assunto = document.getElementById("assunto-2").value
+      const documentFiles = document.getElementById("documento-1")
+			const fileObj = {
+        name: "",
+        type: "",
+        base64: null
+      }
+      
+			if (documentFiles.files.length > 0) {
+      
+        	const file = documentFiles.files[0];
+          const reader = new FileReader();
+          
+          reader.onloadend = function () {
+            const base64String = reader.result.split(",")[1];
+            fileObj.name = file.name
+            fileObj.type = file.type
+            fileObj.base64 = base64String
+          }
+          
+          reader.readAsDataURL(file);
+          
+      }
       
       const formatCPF = (cpf) => cpf.replaceAll(".", "").replaceAll("-", "");
       const formatPhone = (phone) => phone.replace(/\D/g, "")
@@ -56,8 +78,7 @@
         errorContainer2.style.display = "none";
         const cpfIsValid = await checkCPF(cpf)
         if (cpfIsValid) {
-            console.log("test", { username: name, cpf: formatCPF(cpf), phone: formatPhone(phone), email, solicitation, assunto })
-            await getProtocolDenuncia({ username: name, cpf: formatCPF(cpf), phone: formatPhone(phone), email, solicitation, assunto })
+            await getProtocolDenuncia({ username: name, cpf: formatCPF(cpf), phone: formatPhone(phone), email, solicitation, assunto, fileObj })
         } else {
           errorContainer2.style.display = "block"
           errorMsg2.style.display = "block"
@@ -67,7 +88,7 @@
 
     })
 
-    async function getProtocolDenuncia({ username, cpf, phone, email, solicitation, assunto }) {
+    async function getProtocolDenuncia({ username, cpf, phone, email, solicitation, assunto, fileObj }) {
       preloader.style.display = "flex";
       const response = await fetch(`${urlAPI_Form}/forms`, {
         method: "POST",
@@ -80,7 +101,8 @@
             "e-mail": email,
             "Assunto": solicitation,
             "Resumo da solicitação": assunto,
-          }
+          },
+          file: fileObj
         }),
         headers: {
           "Content-Type": "application/json"
@@ -104,4 +126,45 @@
 
     }
 
-   
+   function clearForm() {
+
+  document.getElementById("wf-form-Atendimento-ao-Cliente").style.display ="flex"
+ 	
+  formAttend.style.display = "flex"
+  msgSuccessCtn.style.display = "none"
+  msgSuccess.innerText = ""
+  
+  formDenuncia.style.display = "flex"
+  msgSuccessCtn2.style.display = "none"
+  msgSuccess2.innerText = ""
+  
+  formOuvidoria.style.display = "flex"
+  msgSuccessCtn1.style.display = "none"
+
+  document.getElementById("Nome-2").value = "";
+  document.getElementById("cpf01").value = "";
+  document.getElementById("phone01").value = "";
+  document.getElementById("e-mail-2").value = "";
+  document.getElementById("assunto").value = "";
+  document.getElementById("Solicita-o").value = "";
+  
+  document.getElementById("Nome").value= "";
+  document.getElementById("cpf03").value= "";
+  document.getElementById("phone03").value= "";
+  document.getElementById("e-mail").value= "";
+  document.getElementById("Solicita-2").value= "";
+  document.getElementById("assunto-2").value= "";
+  
+ 	document.getElementById("Nome-3").value
+  document.getElementById("cpf02").value
+  document.getElementById("phone02").value
+  document.getElementById("e-mail-3").value
+  document.getElementById("assunto-1").value
+  document.getElementById("Solicita-1").value
+  document.getElementById("Protocolo-de-atendimento").value 
+  
+}
+
+document.getElementById("back-form-1").addEventListener("click", ()=> clearForm())
+document.getElementById("back-form-2").addEventListener("click", ()=> clearForm())
+document.getElementById("back-form-3").addEventListener("click", ()=> clearForm())

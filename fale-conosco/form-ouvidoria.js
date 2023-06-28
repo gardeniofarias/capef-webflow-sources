@@ -41,12 +41,36 @@
       const solicitation = document.getElementById("Solicita-1").value
       const oldProtocol = document.getElementById("Protocolo-de-atendimento").value 
 
+      const documentFiles = document.getElementById("documento-1")
+			const fileObj = {
+        name: "",
+        type: "",
+        base64: null
+      }
+      
+			if (documentFiles.files.length > 0) {
+      
+        	const file = documentFiles.files[0];
+          const reader = new FileReader();
+          
+          reader.onloadend = function () {
+            const base64String = reader.result.split(",")[1];
+            fileObj.name = file.name
+            fileObj.type = file.type
+            fileObj.base64 = base64String
+          }
+          
+          reader.readAsDataURL(file);
+          
+      }
+
       const isEmailValid = emailRegex.test(email);
       const isNameValid = name.trim() !== "";
       const isPhoneValid = formatPhone(phone).length === 11;
       const isCPFValid = formatCPF(cpf).length === 11;
       const iSolicitationValid = solicitation.trim() !== "";
       const isValidProtocol = oldProtocol.trim() !== ""
+
 
       if (!isNameValid) {
         errorMsg1.innerText = "Campo nome não deve estar vazio";
@@ -75,8 +99,7 @@
         errorContainer1.style.display = "none";
         const cpfIsValid = await checkCPF(cpf)
         if (cpfIsValid) {
-         console.log("test", { username: name, cpf: formatCPF(cpf), phone: formatPhone(phone), email, oldProtocol, solicitation, assunto })
-         await getProtocolOuvidoria({ username: name, cpf: formatCPF(cpf), phone: formatPhone(phone), email, oldProtocol, solicitation, assunto })
+         await getProtocolOuvidoria({ username: name, cpf: formatCPF(cpf), phone: formatPhone(phone), email, oldProtocol, solicitation, assunto, fileObj })
         } else {
           errorContainer1.style.display = "block"
           errorMsg1.style.display = "block"
@@ -87,7 +110,7 @@
 
     })
 
-    async function getProtocolOuvidoria({ username, cpf, phone, email, oldProtocol, solicitation, assunto }) {
+    async function getProtocolOuvidoria({ username, cpf, phone, email, oldProtocol, solicitation, assunto,fileObj  }) {
 
     const checkProtocol = await validateProtocol({ cpf, protocol: oldProtocol })
       preloader.style.display = "flex";
@@ -111,7 +134,8 @@
             "Assunto": solicitation,
             "Resumo da solicitação": assunto,
             "Protocolo de atendimento": oldProtocol
-          }
+          },
+          file: fileObj
         }),
         headers: {
           "Content-Type": "application/json"
