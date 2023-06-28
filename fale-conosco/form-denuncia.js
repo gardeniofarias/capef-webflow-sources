@@ -101,8 +101,8 @@
             "e-mail": email,
             "Assunto": solicitation,
             "Resumo da solicitação": assunto,
-          },
-          file: fileObj
+            file: fileObj
+          }
         }),
         headers: {
           "Content-Type": "application/json"

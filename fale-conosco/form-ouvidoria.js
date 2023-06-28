@@ -133,9 +133,9 @@
             "e-mail": email,
             "Assunto": solicitation,
             "Resumo da solicitação": assunto,
-            "Protocolo de atendimento": oldProtocol
-          },
-          file: fileObj
+            "Protocolo de atendimento": oldProtocol,
+            file: fileObj
+          }
         }),
         headers: {
           "Content-Type": "application/json"
