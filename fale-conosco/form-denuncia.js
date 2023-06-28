@@ -147,6 +147,8 @@
   document.getElementById("e-mail-2").value = "";
   document.getElementById("assunto").value = "";
   document.getElementById("Solicita-o").value = "";
+  document.getElementById("documento").value = null;
+  document.getElementById("documento").files = null;
   
   document.getElementById("Nome").value= "";
   document.getElementById("cpf03").value= "";
@@ -154,6 +156,8 @@
   document.getElementById("e-mail").value= "";
   document.getElementById("Solicita-2").value= "";
   document.getElementById("assunto-2").value= "";
+  document.getElementById("documento-1").value = null;
+  document.getElementById("documento-1").files = null;
   
  	document.getElementById("Nome-3").value
   document.getElementById("cpf02").value
@@ -162,7 +166,8 @@
   document.getElementById("assunto-1").value
   document.getElementById("Solicita-1").value
   document.getElementById("Protocolo-de-atendimento").value 
-  
+  document.getElementById("documento-2").value = null;
+  document.getElementById("documento-2").files = null;
 }
 
 document.getElementById("back-form-1").addEventListener("click", ()=> clearForm())
