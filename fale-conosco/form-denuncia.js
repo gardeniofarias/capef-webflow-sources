@@ -23,7 +23,7 @@
       const email = document.getElementById("e-mail").value
       const solicitation = document.getElementById("Solicita-2").value
       const assunto = document.getElementById("assunto-2").value
-      const documentFiles = document.getElementById("documento-1")
+      const documentFiles = document.getElementById("documento-2")
 			const fileObj = {
         name: "",
         type: "",
