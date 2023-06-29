@@ -74,7 +74,6 @@
           headers
         });
 
-        console.log(dataResponse)
 
 
         preloader.style.display = "none";
@@ -226,7 +225,6 @@
         errorContainer.style.display = "block"
         errorMsg.style.display = "block"
         errorMsg.innerText = "Email inválido"
-        console.log("Email inválido")
       }
 
     }
@@ -248,7 +246,6 @@
       async function checkCPF(cpf) {
         const response = await api(`${urlIndicacao}/indicador/${cpf}/planof`);
         preloader.style.display = "none";
-        console.log(response)
         return response
       }
 
@@ -270,7 +267,6 @@
           errorMsg.innerText = "CPF inválido"
         } else {
           const result = await checkCPF(cpf)
-          console.log("result", result)
           if (result.id) {
             modalIndication.style.display = "flex"
           } else {
