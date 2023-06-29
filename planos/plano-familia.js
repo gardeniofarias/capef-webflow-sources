@@ -74,6 +74,9 @@
           headers
         });
 
+        console.log(dataResponse)
+
+
         preloader.style.display = "none";
 
         if (dataResponse.status === 401) {
@@ -152,6 +155,8 @@
             "Content-Type": "application/json"
           }
         })
+
+
         
         if (response.id) {
         
@@ -164,6 +169,7 @@
           await sendWhatsAppMessage(celular, msg)
 
         } else {
+          preloader.style.display = "none";
           errorContainer.style.display = "block"
           errorMsg.style.display = "block"
            if (response.error) {
@@ -241,6 +247,8 @@
 
       async function checkCPF(cpf) {
         const response = await api(`${urlIndicacao}/indicador/${cpf}/planof`);
+        preloader.style.display = "none";
+        console.log(response)
         return response
       }
 
