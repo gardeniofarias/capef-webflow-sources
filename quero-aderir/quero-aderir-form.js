@@ -223,17 +223,14 @@ getElement('#submit-cpf').addEventListener('click', async () => {
   const submitWebflow = document.getElementById("webflow-submit")
 
   preloader.style.display = "flex"
-  loadingIcon.style.display = "flex"
 
   successCPF.style.display = 'none';
   formQueroAderir.style.display = 'none';
-  loading.style.display = 'block';
   
   if(cpfAdesao.value.length < 11){
     preloader.style.display = "none"
     loadingIcon.style.display = "none"
     formQueroAderir.style.display = 'block';
-    loading.style.display = 'none';
       getElement('#failure-cpf').style.display = "block"
       errorMsg.style.display = "block"
       errorMsg.innerText = "CPF não é valido"
@@ -264,15 +261,13 @@ getElement('#submit-cpf').addEventListener('click', async () => {
       getElement('#failure-cpf').style.display = "block"
       errorMsg.style.display = "block"
       errorMsg.innerText = "Você já é participante do plano"
-    }
+    } 
 
    
   }
 
   preloader.style.display = "none"
-  loadingIcon.style.display = "none"
   formQueroAderir.style.display = 'block';
-  loading.style.display = 'none';
 
 });
 
