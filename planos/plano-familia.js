@@ -30,6 +30,8 @@
     preloader.style.left = 0;
     preloader.style.width = "100%";
     preloader.style.height = "300px";
+    preloader.style.position = "fixed";
+
 
     async function setupToken({ url }) {
 
