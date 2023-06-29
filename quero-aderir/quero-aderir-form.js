@@ -223,14 +223,11 @@ getElement('#submit-cpf').addEventListener('click', async () => {
   const submitWebflow = document.getElementById("webflow-submit")
 
   preloader.style.display = "flex"
-
   successCPF.style.display = 'none';
-  formQueroAderir.style.display = 'none';
   
   if(cpfAdesao.value.length < 11){
     preloader.style.display = "none"
     loadingIcon.style.display = "none"
-    formQueroAderir.style.display = 'block';
       getElement('#failure-cpf').style.display = "block"
       errorMsg.style.display = "block"
       errorMsg.innerText = "CPF não é valido"
@@ -240,7 +237,6 @@ getElement('#submit-cpf').addEventListener('click', async () => {
   const isCPFValid = await validateCPF(cpfAdesao.value);
 
   if (!isCPFValid) {
-      formQueroAderir.style.display = 'block';
         errorMsg.style.display = "block"
       var text = "Que bom que você demonstrou interesse no Plano CV I. Entretanto, seu CPF não consta em nosso banco de dados. Que tal conhecer mais sobre o Plano Família? ";
       var link = "https://capef-web.webflow.io/plano-familia";
