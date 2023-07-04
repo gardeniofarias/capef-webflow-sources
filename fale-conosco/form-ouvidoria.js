@@ -28,7 +28,7 @@
 
     buttonFormOuvidoria.addEventListener("click", async () => {
 
-      errorMsg1.innerText = ""
+      errorMsg1.innerText = " "
       errorContainer1.style.display = "none"
 
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
