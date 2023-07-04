@@ -155,13 +155,13 @@
   document.getElementById("Solicita-2").value= "";
   document.getElementById("assunto-2").value= "";
   
- 	document.getElementById("Nome-3").value
-  document.getElementById("cpf02").value
-  document.getElementById("phone02").value
-  document.getElementById("e-mail-3").value
-  document.getElementById("assunto-1").value
-  document.getElementById("Solicita-1").value
-  document.getElementById("Protocolo-de-atendimento").value 
+ 	document.getElementById("Nome-3").value = ""
+  document.getElementById("cpf02").value = ""
+  document.getElementById("phone02").value = ""
+  document.getElementById("e-mail-3").value = ""
+  document.getElementById("assunto-1").value = ""
+  document.getElementById("Solicita-1").value = ""
+  document.getElementById("Protocolo-de-atendimento").value = ""
   
 }
 
