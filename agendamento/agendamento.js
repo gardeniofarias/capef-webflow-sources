@@ -345,11 +345,28 @@
 
         await loadCalendar()
 
-        $("#dia-input, #mes-input, #year-input, #plan-input, #dia-input-2, #mes-input-2, #year-input-2, #plan-input-2").change(function () {
+         $("#mes-input, #mes-input-2").change(async function () {
             clearError();
-            const day = $(tipoAtendimento === 1 ? "#dia-input" : "#dia-input-2").val();
-            const month = $(tipoAtendimento === 1 ? "#mes-input" : "#mes-input-2").val();
+
+            console.log("Month input changed");
+
+            const month = $(this).val();
             const year = $(tipoAtendimento === 1 ? "#year-input" : "#year-input-2").val();
+
+            preloader.style.display = "flex";
+            const response = await api(`${urlSchedule}/calendario/atendimento/${tipoAtendimento}/mes/${month}/ano/${year}`);
+            preloader.style.display = "none";
+            const result = response[0];
+
+            console.log("Result calendar ===> ", result);
+
+            const diaEleme = $("#dia-input");
+            const diaEleme2 = $("#dia-input-2");
+
+            loadDaysOfMonth(diaEleme, result.dias)
+            loadDaysOfMonth(diaEleme2, result.dias)
+
+            const day = $(tipoAtendimento === 1 ? "#dia-input" : "#dia-input-2").val();
 
 
             getTimes({
@@ -359,6 +376,42 @@
                 atendimentoType: tipoAtendimento
             });
         });
+
+
+        $("#year-input, #year-input-2").change(async function () {
+            clearError();
+
+
+            const year = $(this).val();
+
+            preloader.style.display = "flex";
+            const response = await api(`${urlSchedule}/calendario/atendimento/${tipoAtendimento}/ano/${year}`);
+            preloader.style.display = "none";
+            const result = response[0];
+
+
+            const diaEleme = $("#dia-input");
+            const diaEleme2 = $("#dia-input-2");
+
+            const mesElem = $("#mes-input");
+            const mesElem2 = $("#mes-input-2")
+
+
+            loadDaysOfMonth(diaEleme, result.dias)
+            loadDaysOfMonth(diaEleme2, result.dias)
+
+            loadMonths(mesElem, result.mes)
+            loadMonths(mesElem2, result.mes)
+
+            getTimes({
+                day: $(tipoAtendimento === 1 ? "#dia-input" : "#dia-input-2").val(),
+                year,
+                month: Number($(tipoAtendimento === 1 ? "#mes-input" : "#mes-input-2").val()),
+                atendimentoType: tipoAtendimento
+            });
+        });
+
+
 
         $("#atendimento-eletronico-input").click(async function () {
             clearError();
