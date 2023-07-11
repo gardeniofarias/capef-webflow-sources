@@ -345,6 +345,26 @@
 
         await loadCalendar()
 
+         $("#dia-input, #dia-input-2").change(async function () {
+            clearError();
+
+            console.log("day changed")
+
+            const day = $(tipoAtendimento === 1 ? "#dia-input" : "#dia-input-2").val();
+            const month = $(tipoAtendimento === 1 ? "#mes-input" : "#mes-input-2").val();
+            const year = $(tipoAtendimento === 1 ? "#year-input" : "#year-input-2").val();
+
+           
+
+
+            getTimes({
+                day,
+                year,
+                month: Number(month),
+                atendimentoType: tipoAtendimento
+            });
+        });
+
          $("#mes-input, #mes-input-2").change(async function () {
             clearError();
 
