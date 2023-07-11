@@ -438,13 +438,17 @@
             addMask();
             await getPlans();
             tipoAtendimento = 2;
+            loadCalendar()
         });
+
         $("#atendimento-presencial-input").click(async function () {
             clearError();
             addMask();
             await getPlans();
             tipoAtendimento = 1;
+            loadCalendar()
         });
+
         await  getPlans();
         $("#dia-input, #mes-input, #year-input, #plan-input,#mes-input-2, #year-input-2, #plan-input-2, #phone-01,#phone-02, #time - input - 2, #email - input, #email - input - 2, #assunto - input").change(function () {
             clearError();
