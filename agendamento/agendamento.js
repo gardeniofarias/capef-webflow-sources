@@ -10,9 +10,6 @@
         }
     });
 
-let tipoAtendimento = 1;
-
-
 async function setupToken() {
 
     const authResponse = await fetch(`${urlSchedule}/auth/access-token`, {
@@ -94,17 +91,12 @@ async function authFetch(url, options = {}) {
     }
 }
 
-
 function clearError() {
     $(".w-form-fail").css("display", "none");
     $(".w-form-fail").text("");
     $("#atendimento-presencial-submit, #atendimento-eletronico-submit").text("Enviar");
     preloader.style.display = "none";
 }
-
-const api = authFetch;
-var urlSchedule = "https://ici002.capef.com.br/apiagendamento"; 
-
 
 function showFormFailMessage(message) {
     $(".w-form-fail").css("display", "block");
@@ -117,6 +109,7 @@ function addMask() {
     $("#cpf-01").mask("999.999.999-99");
     $("#cpf-02").mask("999.999.999-99");
 };
+
 $(document).ready(function ($) {
     $("#phone-01").mask("(99) 9 9999-9999");
     $("#phone-02").mask("(99) 9 9999-9999");
@@ -130,6 +123,7 @@ loadingIcon.style.background = "#28343e";
 loadingIcon.style.padding = "10px";
 loadingIcon.style.borderRadius = "6px";
 loadingIcon.style.boxShadow = "0px 0px 0px 1px rgba(0, 0, 0, 0.1), 0px 2px 4px rgba(0, 0, 0, 0.2)";
+
 if (preloader) {
     preloader.style.display = "none";
     preloader.style.opacity = 1;
@@ -211,8 +205,6 @@ async function checkCPF(cpf) {
     const data = (await response).json();
 }
 
-
-
 function loadDaysOfMonth(selectElement, days) {
 
     selectElement.empty();
@@ -244,15 +236,23 @@ function loadMonths(selectElement, months) {
     }
 }
 
+var xyz = null;
 
-
-
-
+async function getCalendarioAtenimento(){
+	xyz = await api(`${urlSchedule}/calendario/atendimento/${tipoAtendimento}`); 
+	if(xyz[0].dias.length == 0 && xyz[0].mes.length > 1 && xyz[0].ano.length >= 1){
+		xyz = await api(`${urlSchedule}/calendario/atendimento/${tipoAtendimento}/mes/${xyz[0].mes[1].mes}/ano/${xyz[0].ano[0]}`);
+		xyz[0].mes.shift()
+	}
+	
+	return xyz
+}
 
 async function loadCalendar() {
      preloader.style.display = "flex"
-    const response = await api(`${urlSchedule}/calendario/atendimento/${tipoAtendimento}`);
-     preloader.style.display = "none"
+    const response = await getCalendarioAtenimento();
+	xyz = response;
+    preloader.style.display = "none"
     const result = response[0];
 
     const diaEleme = $("#dia-input");
@@ -276,14 +276,12 @@ async function loadCalendar() {
     getTimesOfToday()
 }
 
-loadCalendar()
-
-
 async function getTimesOfToday() {
     const day = $(tipoAtendimento === 1 ? "#dia-input" : "#dia-input-2").val();
     const month = $(tipoAtendimento === 1 ? "#mes-input" : "#mes-input-2").val();
     const year = $(tipoAtendimento === 1 ? "#year-input" : "#year-input-2").val();
-
+	
+	console.log('augusto dia: '  + day)
 
     getTimes({
         day,
@@ -338,6 +336,7 @@ async function scheduleAttend(data) {
 function getElement(selector) {
     return document.querySelector(selector);
 }
+
 async function loadScript() {
 
     await setupToken();
@@ -347,7 +346,7 @@ async function loadScript() {
      $("#dia-input, #dia-input-2").change(async function () {
         clearError();
 
-        console.log("day changed")
+        //console.log("day changed")
 
         const day = $(tipoAtendimento === 1 ? "#dia-input" : "#dia-input-2").val();
         const month = $(tipoAtendimento === 1 ? "#mes-input" : "#mes-input-2").val();
@@ -454,9 +453,6 @@ async function loadScript() {
     })
 }
 
-loadScript();
-
-
 async function createRegistration() {
     clearError();
     const phoneValue = getElement(tipoAtendimento === 1 ? "#phone-01" : "#phone-02").value;
@@ -516,12 +512,7 @@ async function createRegistration() {
     }
 }
 
-document.querySelector("#atendimento-presencial-submit").addEventListener("click", createRegistration);
-document.getElementById("atendimento-eletronico-submit").addEventListener("click", createRegistration);
- 
-
-async function getAssuntoInputValue()
-{
+async function getAssuntoInputValue(){
     try {
         var data = document.querySelector('#assunto-input').value
 
@@ -554,4 +545,12 @@ async function getAssuntoInputValue()
     }        
 }
 
- 
+let tipoAtendimento = 1;
+var urlSchedule = "https://ici002.capef.com.br/apiagendamento"; 
+const api = authFetch; 
+
+loadCalendar();
+loadScript();
+
+document.querySelector("#atendimento-presencial-submit").addEventListener("click", createRegistration);
+document.getElementById("atendimento-eletronico-submit").addEventListener("click", createRegistration);
