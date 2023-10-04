@@ -1,14 +1,13 @@
-    
-    document.addEventListener("contextmenu", (e) => {
-        e.preventDefault();
-    }, false);
+document.addEventListener("contextmenu", (e) => {
+	e.preventDefault();
+}, false);
 
-    document.addEventListener("keydown", (e) => {
-        if (e.ctrlKey || e.keyCode == 123) {
-            e.stopPropagation();
-            e.preventDefault();
-        }
-    });
+document.addEventListener("keydown", (e) => {
+	if (e.ctrlKey || e.keyCode == 123) {
+		e.stopPropagation();
+		e.preventDefault();
+	}
+});
 
 async function setupToken() {
 
@@ -237,14 +236,49 @@ function loadMonths(selectElement, months) {
 }
 
 var xyz = null;
-
 async function getCalendarioAtenimento(){
-	xyz = await api(`${urlSchedule}/calendario/atendimento/${tipoAtendimento}`); 
-	if(xyz[0].dias.length == 0 && xyz[0].mes.length > 1 && xyz[0].ano.length >= 1){
-		xyz = await api(`${urlSchedule}/calendario/atendimento/${tipoAtendimento}/mes/${xyz[0].mes[1].mes}/ano/${xyz[0].ano[0]}`);
-		xyz[0].mes.shift()
-	}
+	var dataAtual = new Date();
+	var mesAtual = dataAtual.getMonth();
+	var anoAtual = dataAtual.getFullYear()
 	
+	//xyz = await api(`${urlSchedule}/calendario/atendimento/${tipoAtendimento}/mes/${mesAtual}/ano/${ano}`);
+	
+	var i = 1
+	var parar = false;
+	var apiRequest = null;
+	while (parar === false) {
+		i++
+		if(i == 12) {
+			parar = true
+		}
+		 //console.log(i)
+		 
+		apiRequest =  await (async () => {
+			try {  
+				return	api(`${urlSchedule}/calendario/atendimento/${tipoAtendimento}/mes/${mesAtual}/ano/${anoAtual}`);							
+			} catch (erro) {
+				console.error("Erro:", erro); 
+			}})();
+		
+		xyz = apiRequest
+		//console.log(apiRequest)
+		if(xyz[0].dias.length !== 0){
+			parar = true
+		}else{
+			mesAtual ++
+			if(mesAtual == 13){
+				mesAtual = 1;
+				anoAtual++;
+			}
+		}
+		 
+		 
+		if (parar) { 
+			break;  
+		}
+	}
+	xyz[0].ano = xyz[0].ano.filter(item => item >= anoAtual)
+	xyz[0].mes = xyz[0].mes.filter(item => item.mes >= mesAtual)
 	return xyz
 }
 
@@ -281,8 +315,6 @@ async function getTimesOfToday() {
     const month = $(tipoAtendimento === 1 ? "#mes-input" : "#mes-input-2").val();
     const year = $(tipoAtendimento === 1 ? "#year-input" : "#year-input-2").val();
 	
-	console.log('augusto dia: '  + day)
-
     getTimes({
         day,
         year,
