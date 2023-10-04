@@ -379,6 +379,48 @@
 
     loadScript();
 
+    async function getAssuntoId()
+    {
+        try{
+
+            // const select = document.querySelector('#assunto-input') 
+            // const indiceSelecionado = select.selectedIndex; 
+            // const textOptions = select.options[indiceSelecionado].textContent;
+
+            var data = document.querySelector('#assunto-input').value
+
+            if(data === "" || data == null){
+                return 0;
+            }            
+
+            var lista = getAssuntoAtendimento(); //var lista = await api(`${urlSchedule}/assunto/atendimento/`+ tipoAtendimento);
+            return lista.filter(x => x.key == data)[0].id
+
+       }catch(e){
+          return 0;  
+       }        
+    }
+
+    function getAssuntoAtendimento(){
+        var option = [
+            {"id":1,"descricao":"Adesão", key : "adesao"},
+            {"id":2,"descricao":"Benefício", key : "beneficio"},
+            {"id":3,"descricao":"Cadastro", key: "cadastro"},
+            {"id":4,"descricao":"Contribuição Previdenciária", key:"contribuiçãoprevidenciaria "},
+            {"id":5,"descricao":"Cancelamento", key : "cancelamento"},
+            {"id":6,"descricao":"Concessão de Benefícios", key : "concessaodebeneficio"},
+            {"id":7,"descricao":"Declaração", key : "declaracao"},
+            {"id":8,"descricao":"Empréstimo", key : "emprestimo"},
+            {"id":9,"descricao":"Financiamento Imobiliário", key : "financiamentoimobiliário "},
+            {"id":10,"descricao":"Imposto de Renda", key:"impostoderenda"},
+            {"id":11,"descricao":"Institutos Previdenciários", key : "institutosprevidenciarios"},
+            {"id":12,"descricao":"Processo de Adesão do Acordo 2003", key : "processosdeadesaodoacordo"},
+            {"id":13,"descricao":"Recadastramento", key : "recadastramento"},
+            {"id":14,"descricao":"Outros", key : "outros"}]
+
+            return option
+    }
+
 
     async function createRegistration() {
         clearError();
@@ -386,8 +428,7 @@
         const cpfInputValue = getElement(tipoAtendimento === 1 ? "#cpf-01" : "#cpf-02").value;
         const timeInputValue = getElement(tipoAtendimento === 1 ? "#time-input-2" : "#horario-2").value;
         const planInputValue = getElement(tipoAtendimento === 1 ? "#plan-input" : "#plan-input-2").value;
-        const emailInputValue = getElement(tipoAtendimento === 1 ? "#email-input" : "#email-input-2").value;
-        const assuntoInputValue = getElement("#assunto-input") ? getElement("#assunto-input").value : "";
+        const emailInputValue = getElement(tipoAtendimento === 1 ? "#email-input" : "#email-input-2").value;        
         const day = getElement(tipoAtendimento === 1 ? "#dia-input" : "#dia-input-2").value;
         const month = getElement(tipoAtendimento === 1 ? "#mes-input" : "#mes-input-2").value;
         const year = getElement(tipoAtendimento === 1 ? "#year-input" : "#year-input-2").value;
@@ -403,7 +444,9 @@
                 typeAtt: tipoAtendimento
             });
 
-            console.log("resultCPF", resultCPF)
+            //console.log("resultCPF", resultCPF)
+
+            var assuntoId = await getAssuntoId();
 
             if (resultCPF) {
 
@@ -412,7 +455,7 @@
                     dia: day,
                     mes: Number(month) + 1,
                     plano: planInputValue,
-                    assunto: tipoAtendimento,
+                    assunto: assuntoId,
                     horario: timeInputValue,
                     cpf: cpfInputValue.replace(/\./g, "").replace("-", ""),
                     ddd: phoneDDD.replace(" ", ""),
