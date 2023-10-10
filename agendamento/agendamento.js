@@ -578,7 +578,7 @@ async function getAssuntoInputValue(){
 }
 
 let tipoAtendimento = 1;
-var urlSchedule = "https://ici002.capef.com.br/apiagendamento"; 
+var urlSchedule = "https://apiagendamento.capef.com.br"; 
 const api = authFetch; 
 
 loadCalendar();
