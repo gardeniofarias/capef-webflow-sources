@@ -12,14 +12,13 @@
   
   let tipoAtendimento = 1;
 
-
     async function setupToken() {
 
         const authResponse = await fetch("https://ici002.capef.com.br/apiagendamento/auth/access-token", {
             method: "POST",
             body: JSON.stringify({
-                username: "Hero99",
-                password: "d7OwsEqTXc"
+                username: authUserName,
+                password: authPassword
             }),
             headers: {
                 "Content-Type": "application/json"
