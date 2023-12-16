@@ -36,8 +36,8 @@
       const authResponse = await fetch(`${url}/auth/access-token`, {
         method: "POST",
         body: JSON.stringify({
-          userName: "Hero99",
-          password: "d7OwsEqTXc"
+          userName: authUserName,
+          password: authPassword
         }),
         headers: {
           "Content-Type": "application/json"

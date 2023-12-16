@@ -13,8 +13,8 @@ const getRequestOptions = e=>({
                         "Content-Type": "application/json"
                     },
                     body: JSON.stringify({
-                        username: "Hero99",
-                        password: "d7OwsEqTXc"
+                        username: authUserName,
+                        password: authPassword
                     })
                 }).then(e=>e.json()).catch(e=>console.log("\uD83D\uDE80 ~ error:", e))
             }
@@ -72,8 +72,8 @@ const getRequestOptions = e=>({
                         "Content-Type": "application/json"
                     },
                     body: JSON.stringify({
-                        username: "Hero99",
-                        password: "d7OwsEqTXc"
+                        username: authUserName,
+                        password: authPassword
                     })
                 }).then(e=>e.json()).catch(e=>console.log("\uD83D\uDE80 ~ error:", e))
             }
@@ -100,8 +100,8 @@ const getRequestOptions = e=>({
                         "Content-Type": "application/json"
                     },
                     body: JSON.stringify({
-                        username: "Hero99",
-                        password: "d7OwsEqTXc"
+                        username: authUserName,
+                        password: authPassword
                     })
                 }).then(e=>e.json()).catch(e=>console.log("\uD83D\uDE80 ~ error:", e))
             }
