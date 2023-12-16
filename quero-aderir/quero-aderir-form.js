@@ -154,8 +154,8 @@ async function getToken(apiName) {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
-      username: 'Hero99',
-      password: 'd7OwsEqTXc'
+      username: authUserName,
+      password: authPassword
     })
   });
 
