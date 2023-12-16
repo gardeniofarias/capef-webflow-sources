@@ -119,8 +119,8 @@
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                username: "Hero99",
-                password: "d7OwsEqTXc",
+                username: authUserName,
+                password: authPassword,
             }),
         }).then((result)=>result.json()).catch((error)=>console.log("🚀 ~ error:", error));
     }
