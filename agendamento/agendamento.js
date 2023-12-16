@@ -14,8 +14,8 @@ async function setupToken() {
     const authResponse = await fetch(`${urlSchedule}/auth/access-token`, {
         method: "POST",
         body: JSON.stringify({
-            username: "Hero99",
-            password: "d7OwsEqTXc"
+            username: authUserName,
+            password: authPassword
         }),
         headers: {
             "Content-Type": "application/json"
