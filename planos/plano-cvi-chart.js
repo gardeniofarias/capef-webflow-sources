@@ -17,8 +17,8 @@ const getRequestOptions = accessToken=>{
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({
-                        username: 'Hero99',
-                        password: 'd7OwsEqTXc'
+                        username: authUserName,
+                        password: authPassword
                     })
                 }).then(response=>response.json()).catch(error=>console.log('🚀 ~ error:', error));
             }
